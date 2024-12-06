@@ -35,6 +35,7 @@ def extract_text_from_pdf(pdf_file):
         text += page.extract_text()
     return text
 
+# New function to split text into chunks
 def split_text_into_chunks(text, chunk_size=1000):
     text_splitter = CharacterTextSplitter(chunk_size=chunk_size, chunk_overlap=0)
     return text_splitter.split_text(text)
@@ -59,6 +60,8 @@ if uploaded_file is not None:
     
     st.info("Running similarity search...")
     results = []
+
+    # Search each chunk from the uploaded document against the vector store
     for chunk in user_chunks:
         similarity_results = vector_store.similarity_search_with_score(chunk)
         results.extend(similarity_results)
@@ -66,16 +69,22 @@ if uploaded_file is not None:
     st.subheader("Similarity Results")
 
     for i, (doc, score) in enumerate(results):
+        # Calculate similarity percentage
         similarity_percentage = round((1 - score) * 100, 2)
         document_name = db_filenames[i]
+        
+        # Show document name and similarity percentage
         st.write(f"Document: {document_name} - Similarity: {similarity_percentage}%")
-        db_segment = doc[:500]  
-        uploaded_segment = user_chunks[i % len(user_chunks)][:500] 
+        
+        # Display the similar lines (segments) from the uploaded document and the database document
+        db_segment = doc.page_content[:500]  # Accessing the page_content of doc and slicing
+        uploaded_segment = user_chunks[i % len(user_chunks)][:500]  # Accessing a chunk from the uploaded document
 
         st.write(f"Database Document Segment: {db_segment}")
         st.write(f"Uploaded Document Segment: {uploaded_segment}")
         
     st.success("Ready to process more documents!")
+
 
 
 ## Version 2 - New Code to tell the document name as well. 
