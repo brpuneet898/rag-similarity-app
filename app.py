@@ -6,7 +6,8 @@ from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
 from groq.groq_lm import ChatGroq
 
-os.environ["GROQ_API_KEY"] = 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
+os.environ["GROQ_API_KEY"] = "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"
+
 
 def load_model():
     return ChatGroq(temperature=0.8, model="llama3-8b-8192")
