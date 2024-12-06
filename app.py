@@ -4,6 +4,7 @@ import os
 import streamlit as st
 import nltk
 nltk.download('punkt')
+nltk.download('punkt_tab')
 from nltk.tokenize import sent_tokenize
 from pypdf import PdfReader
 from langchain.embeddings import HuggingFaceEmbeddings
