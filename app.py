@@ -3,6 +3,7 @@
 import os
 import streamlit as st
 import nltk
+nltk.download('punkt')
 from nltk.tokenize import sent_tokenize
 from pypdf import PdfReader
 from langchain.embeddings import HuggingFaceEmbeddings
