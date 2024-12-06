@@ -1,8 +1,6 @@
 streamlit
 pypdf
-PyPDF2
 faiss-cpu
 sentence-transformers
-groq-python-sdk
 langchain-groq
 langchain-community
