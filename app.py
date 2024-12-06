@@ -53,11 +53,23 @@ if uploaded_file is not None:
     st.info("Running similarity search...")
     results = vector_store.similarity_search_with_score(user_text)
     
+    # st.subheader("Similarity Results")
+    # for i, (doc, score) in enumerate(results):
+    #     similarity_percentage = round((1 - score) * 100, 2)  
+    #     document_name = db_filenames[i]  
+    #     st.write(f"Document: {document_name} - Similarity: {similarity_percentage:.2f}%")
+
     st.subheader("Similarity Results")
+    found_similarity = False 
     for i, (doc, score) in enumerate(results):
-        similarity_percentage = round((1 - score) * 100, 2)  
-        document_name = db_filenames[i]  
-        st.write(f"Document: {document_name} - Similarity: {similarity_percentage:.2f}%")
+        similarity_percentage = round((1 - score) * 100, 2)
+        if similarity_percentage > 0:
+            found_similarity = True
+            document_name = db_filenames[i]  
+            st.write(f"Document: {document_name} - Similarity: {similarity_percentage:.2f}%")
+    
+    if not found_similarity:
+        st.write("No similarity found.")
 
 st.success("Ready to process more documents!")
 
