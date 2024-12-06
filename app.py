@@ -4,7 +4,7 @@ import streamlit as st
 from langchain.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.document_loaders import PyPDFLoader
-from groq.groq_lm import ChatGroq
+# from groq.groq_lm import ChatGroq
 
 os.environ["GROQ_API_KEY"] = "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"
 
