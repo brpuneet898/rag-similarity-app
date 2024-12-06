@@ -57,7 +57,7 @@ if uploaded_file is not None:
     for i, (doc, score) in enumerate(results):
         similarity_percentage = round((1 - score) * 100, 2)  
         document_name = db_filenames[i]  
-        st.write(f"Document: {document_name} - Similarity: {similarity_percentage}%")
+        st.write(f"Document: {document_name} - Similarity: {similarity_percentage:.2f}%")
 
 st.success("Ready to process more documents!")
 
