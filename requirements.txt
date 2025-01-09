@@ -5,3 +5,6 @@ faiss-cpu
 sentence-transformers
 langchain-groq
 langchain-community
+pandas
+openpyxl
+python-docx
