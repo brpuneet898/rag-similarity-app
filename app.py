@@ -1,4 +1,5 @@
 import os
+import io  # For working with byte streams
 import pandas as pd
 import streamlit as st
 from pypdf import PdfReader
@@ -50,7 +51,12 @@ def extract_text_from_docx(uploaded_file):
     """
     Extracts text from a DOCX file (Streamlit UploadedFile).
     """
-    doc = Document(uploaded_file)
+    # Create a file-like object from the uploaded file (byte stream)
+    docx_file = io.BytesIO(uploaded_file.read())
+    
+    # Load the document using python-docx
+    doc = Document(docx_file)
+    
     all_text = []
     filenames = []
     
